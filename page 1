@@ -1,1 +1,78 @@
-1
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Caixa com Borda Animada</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .animated-border {
+      width: 200px;
+      height: 100px;
+      border: 2px solid transparent; /* Borda invisível inicialmente */
+      position: relative;
+      overflow: hidden; /* Para esconder a animação fora da caixa */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .animated-border::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, red, yellow, green);
+      background-size: 400% 400%;
+      animation: gradientAnimation 5s ease infinite;
+      z-index: 0;
+    }
+
+    .animated-border::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      background-color: #111;
+      z-index: 1;
+    }
+
+    .animated-border > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-border">
+    Conteúdo da caixa.
+  </div>
+</body>
+</html>
